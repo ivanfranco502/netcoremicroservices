@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Catalog.Api.Controllers
+﻿namespace Todo.Api.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class TodoController : ControllerBase
     {
         // GET api/values
         [HttpGet]
@@ -21,7 +18,7 @@ namespace Catalog.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return $"Your id is {id}";
+            return "value";
         }
 
         // POST api/values
