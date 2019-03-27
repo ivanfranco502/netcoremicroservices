@@ -1,12 +1,23 @@
 ﻿namespace Todo.Api.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using System;
     using System.Collections.Generic;
 
-    [Route("api/[controller]")]
+    /// <summary>
+    ///  General
+    /// </summary>
+    /// <response code="500">Returns OK</response>
+    [ProducesResponseType(200)]
+    [ProducesResponseType(500)]
+    [Route("api/Todo")]
     [ApiController]
+    [Produces("text/json")]
+
     public class TodoController : ControllerBase
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TodoController));
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -14,11 +25,33 @@
             return new string[] { "value1", "value2" };
         }
 
+
         // GET api/values/5
+        /// <summary>
+        /// api/values/5
+        /// </summary>
+        /// <param name="id">ID (INT)</param>
+        /// <returns>value</returns>
+        /// <response code="500">Returns value</response>
+        /// <response code="400">Returns value</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(string), 400)]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            try
+            {
+                if (id < 0)
+                {
+                    throw new Exception($"Error {id}");
+                }
+                log.Info($"Result {id}");
+                return $"Result {id}";
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                return BadRequest();
+            }
         }
 
         // POST api/values
