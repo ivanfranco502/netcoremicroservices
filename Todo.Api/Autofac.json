@@ -1,0 +1,19 @@
+{
+  "components": [
+    {
+      "type": "Todo.Api.Controllers.Display, Todo.Api",
+      "services": [
+        {
+          "type": "Todo.Api.Controllers.IDisplay, Todo.Api"
+        }
+      ],
+      "parameters": {
+        "signo": "$$$$"
+      },
+      "injectProperties": true,
+      "properties": {
+        "Upper": "false"
+      }
+    }
+  ]
+}

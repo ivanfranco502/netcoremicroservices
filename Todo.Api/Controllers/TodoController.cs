@@ -16,13 +16,27 @@
 
     public class TodoController : ControllerBase
     {
+        private IDisplay _display;
+        private ILogger _log;
+
+        public TodoController(IDisplay display, ILogger log)
+        {
+            _display = display;
+            _log = log;
+        }
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TodoController));
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get()
         {
-            return new string[] { "value1", "value2" };
+
+
+            string result = _display.Show("Hola Mundo");
+            _log.Log($"{result} Get" );
+            return result;
+
         }
 
 
